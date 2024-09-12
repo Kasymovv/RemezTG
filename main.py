@@ -4,7 +4,7 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from config import TELEGRAM_TOKEN
-from handlers import start, shop, repair, addresses, collaboration, help, idea
+from handlers import beauty, start, shop, repair, addresses, collaboration, help, idea
 
 
 async def main():
@@ -17,13 +17,10 @@ async def main():
     dp.include_router(collaboration.router)
     dp.include_router(help.router)
     dp.include_router(idea.router)
-
+    dp.include_router(beauty.router)
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("Exit")
+    asyncio.run(main())
