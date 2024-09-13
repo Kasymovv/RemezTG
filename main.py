@@ -5,9 +5,11 @@ import logging
 from aiogram import Bot, Dispatcher
 from config import TELEGRAM_TOKEN
 from handlers import beauty, collaboration, start, shop, repair, addresses, help, about
+from database.models import async_main
 
 
 async def main():
+    await async_main()
     bot = Bot(token=TELEGRAM_TOKEN)
     dp = Dispatcher()
     dp.include_router(start.router)
