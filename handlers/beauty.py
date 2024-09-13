@@ -1,13 +1,14 @@
-from aiogram import Router
-from aiogram.types import Message
-from aiogram.filters import Command
+from aiogram import F, Router
+from aiogram.types import CallbackQuery
 
 router = Router()
 
 
-@router.message(Command("beauty"))
-async def beauty(message: Message):
-    await message.answer("""
+@router.callback_query(F.data == "beauty")
+async def beauty(callback: CallbackQuery):
+    await callback.answer()
+    await callback.message.answer(
+        """
 Бесплатная укладка и мастер-класс в корнерах REMEZ
 
 Мы открыты тестированию и сравнению. Запишитесь в один из корнеров REMEZ к стилистам на бесплатную укладку на фен-стайлер Model S или Model E. Бьюти-корнеры REMEZ расположены в торговых центрах Москвы.
@@ -34,4 +35,6 @@ clck.ru/3DFsV5
 
 МЕГА Теплый Стан, Калужское шоссе, 21-й км:
 Временно нет
-""")
+""",
+        disable_web_page_preview=True,
+    )

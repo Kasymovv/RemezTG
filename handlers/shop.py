@@ -1,10 +1,5 @@
-from aiogram import Router
-from aiogram.types import Message
-from aiogram.filters import Command
+import keyboard
+from aiogram import F, Router
+from aiogram.types import CallbackQuery
 
 router = Router()
-
-
-@router.message(Command("shop"))
-async def shop(message: Message):
-    await message.answer("Подрузка каталога из базы данных")
