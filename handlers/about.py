@@ -1,5 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
+import keyboard as kb
 
 router = Router()
 
@@ -7,7 +8,8 @@ router = Router()
 @router.callback_query(F.data == "about")
 async def about(callback: CallbackQuery):
     await callback.answer()
-    await callback.message.answer("""
+    await callback.message.answer(
+        """
 Эстетика инженерии
 
 REMEZ – российский инженерный проект. 
@@ -16,4 +18,7 @@ REMEZ – российский инженерный проект.
 
 По результатам 2023 года 68% покупателей после рекомендации друзей и знакомых приобретают технику REMEZ.
 
-    """)
+    """,
+        disable_web_page_preview=True,
+        reply_markup=kb.to_main_page,
+    )

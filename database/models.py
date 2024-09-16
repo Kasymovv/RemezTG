@@ -30,6 +30,16 @@ class Item(Base):
     category: Mapped[int] = mapped_column(ForeignKey("categories.id"))
 
 
+class City(Base):
+    __tablename__ = "cities"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(25))
+    address: Mapped[str] = mapped_column(String(100))
+    time: Mapped[str] = mapped_column(String(100))
+    phone: Mapped[str] = mapped_column(String(100))
+
+
 async def async_main():
     async with engine.begin() as connect:
         await connect.run_sync(Base.metadata.create_all)

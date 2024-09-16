@@ -10,7 +10,6 @@ from handlers import (
     mainpage,
     start,
     shop,
-    repair,
     addresses,
     help,
     about,
@@ -25,7 +24,6 @@ async def main():
     dp.include_router(start.router)
     dp.include_router(addresses.router)
     dp.include_router(shop.router)
-    dp.include_router(repair.router)
     dp.include_router(collaboration.router)
     dp.include_router(help.router)
     dp.include_router(about.router)

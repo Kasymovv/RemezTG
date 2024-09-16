@@ -1,4 +1,4 @@
-from aiogram import F, Router, types
+from aiogram import F, Router
 from aiogram.enums import ParseMode
 from aiogram.types import CallbackQuery
 from database import requests as rq

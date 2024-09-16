@@ -1,5 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
+import keyboard as kb
 
 router = Router()
 
@@ -17,8 +18,8 @@ remez.com.ru - официальный сайт
 
 @remez_ru - Instagram
 @Romati_Service_bot - Telegram
-7 926 160 91 75 - Whatsapp
 vk.com/remezair - VK
++7-926-160-91-75 - Whatsapp
 
 Почта:
 
@@ -30,7 +31,7 @@ info@remezair.com - Логистика
 
 Телефон:
 
-8 800 333 05 69 - Ежедневно 09.00 - 21.00 (по московскому времени)
+8-800-333-05-69 - Ежедневно 09.00 - 21.00 (по московскому времени)
 
 Юридический адрес:
 
@@ -39,4 +40,5 @@ info@remezair.com - Логистика
 ООО «РОМАТИ»
     """,
         disable_web_page_preview=True,
+        reply_markup=kb.to_main_page,
     )
