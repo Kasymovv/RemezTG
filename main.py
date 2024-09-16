@@ -4,7 +4,17 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from config import TELEGRAM_TOKEN
-from handlers import beauty, collaboration, start, shop, repair, addresses, help, about
+from handlers import (
+    beauty,
+    collaboration,
+    mainpage,
+    start,
+    shop,
+    repair,
+    addresses,
+    help,
+    about,
+)
 from database.models import async_main
 
 
@@ -20,6 +30,7 @@ async def main():
     dp.include_router(help.router)
     dp.include_router(about.router)
     dp.include_router(beauty.router)
+    dp.include_router(mainpage.router)
     await dp.start_polling(bot)
 
 

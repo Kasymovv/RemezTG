@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from database.requests import get_categories, get_category_device
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from database.requests import get_categories, get_category_item
 
 menu = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -14,6 +14,10 @@ menu = InlineKeyboardMarkup(
     ],
     resize_keyboard=True,
     input_field_placeholder="Выберите пункт меню:",
+)
+
+to_main_page = InlineKeyboardMarkup(
+    inline_keyboard=[[InlineKeyboardButton(text="На главную", callback_data="to_main")]]
 )
 
 
@@ -30,14 +34,12 @@ async def categories():
     return keyboard.adjust(2).as_markup()
 
 
-async def devices(category_id):
-    all_devices = await get_category_device(category_id)
+async def items(category_id):
+    all_items = await get_category_item(category_id)
     keyboard = InlineKeyboardBuilder()
-    for device in all_devices:
+    for item in all_items:
         keyboard.add(
-            InlineKeyboardButton(
-                text=device.name, callback_data=f"category_{device.id}"
-            )
+            InlineKeyboardButton(text=item.name, callback_data=f"item_{item.id}")
         )
     keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
     return keyboard.adjust(2).as_markup()

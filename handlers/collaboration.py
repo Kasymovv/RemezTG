@@ -1,5 +1,6 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
+import keyboard as kb
 
 router = Router()
 
@@ -20,4 +21,5 @@ PR и маркетинг: i.petrova@romatigroup.com
 Прочее сотрудничество: info@remez.com.ru
     """,
         disable_web_page_preview=True,
+        reply_markup=kb.to_main_page,
     )

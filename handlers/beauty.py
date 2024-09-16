@@ -1,5 +1,6 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
+import keyboard as kb
 
 router = Router()
 
@@ -37,4 +38,5 @@ clck.ru/3DFsV5
 Временно нет
 """,
         disable_web_page_preview=True,
+        reply_markup=kb.to_main_page,
     )
