@@ -10,25 +10,15 @@ router = Router()
 @router.callback_query(F.data == "addresses")
 async def addresses(callback: CallbackQuery):
     await callback.answer()
-    await callback.message.answer(
-        "Выберите категорию:", reply_markup=await kb.categories()
-    )
+    await callback.message.answer("Выберите город:", reply_markup=await kb.cities())
 
 
-@router.callback_query(F.data.startswith("category_"))
-async def category(callback: CallbackQuery):
+@router.callback_query(F.data.startswith("city_"))
+async def category_addresses(callback: CallbackQuery):
+    address_data = await rq.get_address(callback.data.split("_")[1])
     await callback.answer()
     await callback.message.answer(
-        "Выберите товар по категории",
-        reply_markup=await kb.items(callback.data.split("_")[1]),
-    )
-
-
-@router.callback_query(F.data.startswith("item_"))
-async def category(callback: CallbackQuery):
-    item_data = await rq.get_item(callback.data.split("_")[1])
-    await callback.answer()
-    await callback.message.answer(
-        f"<b>{item_data.name}</b>\n\n{item_data.description}\n\n<b>Цена: {item_data.price}Р</b>\n\n<b>Комплект:</b>\n\n{item_data.equipment}\n\n<b>Купить: {item_data.buy}</b>\n\n<b>Наличие: </b>{item_data.availability}",
+        f"<b>Название : {address_data.name}</b>\n\nАдрес: {address_data.address}\n\n<b>Город: {address_data.city}Р</b>\n\n<b>Время работы:</b>\n\n{address_data.time}\n\n<b>",
         parse_mode=ParseMode.HTML,
-    
+    )
+
