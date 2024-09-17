@@ -3,7 +3,6 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from database.requests import (
     get_categories,
     get_categories_city,
-    get_category_address,
     get_category_item,
 )
 
@@ -23,6 +22,12 @@ menu = InlineKeyboardMarkup(
 
 to_main_page = InlineKeyboardMarkup(
     inline_keyboard=[[InlineKeyboardButton(text="На главную", callback_data="to_main")]]
+)
+prev_page = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="Обратно", callback_data="prev_page")],
+        [InlineKeyboardButton(text="На главную", callback_data="to_main")],
+    ]
 )
 
 
@@ -57,20 +62,6 @@ async def cities():
         keyboard.add(
             InlineKeyboardButton(text=cities.name, callback_data=f"city_{cities.id}")
         )
-    keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
     keyboard.add(InlineKeyboardButton(text="Другой", callback_data="to_main"))
-
-    return keyboard.adjust(2).as_markup()
-
-
-async def city_addresses(city_id):
-    all_addresses = await get_category_address(city_id)
-    keyboard = InlineKeyboardBuilder()
-    for address in all_addresses:
-        keyboard.add(
-            InlineKeyboardButton(
-                text=address.address, callback_data=f"address_{address.id}"
-            )
-        )
     keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
     return keyboard.adjust(2).as_markup()

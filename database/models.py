@@ -43,7 +43,6 @@ class Address(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
     time: Mapped[str] = mapped_column(String(60))
-    category: Mapped[int] = mapped_column()
     address: Mapped[str] = mapped_column(String(100))
     city: Mapped[int] = mapped_column(ForeignKey("cities.id"))
 

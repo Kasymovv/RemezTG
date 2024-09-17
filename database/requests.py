@@ -22,11 +22,10 @@ async def get_categories_city():
         return await session.scalars(select(City))
 
 
-async def get_category_address(address_id):
-    async with async_session() as session:
-        return await session.scalars(select(Address).where(Address.city == address_id))
 
-
-async def get_address(city_id):
+async def get_city(city_id):
     async with async_session() as session:
-        return await session.scalar(select(Address).where(Address.id == city_id))
+        query = select(Address).where(Address.city == city_id)
+        result = await session.execute(query)
+        return result.scalars().all()
+

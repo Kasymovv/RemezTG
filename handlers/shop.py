@@ -31,4 +31,5 @@ async def category(callback: CallbackQuery):
     await callback.message.answer(
         f"<b>{item_data.name}</b>\n\n{item_data.description}\n\n<b>Цена: {item_data.price}Р</b>\n\n<b>Комплект:</b>\n\n{item_data.equipment}\n\n<b>Купить: {item_data.buy}</b>\n\n<b>Наличие: </b>{item_data.availability}",
         parse_mode=ParseMode.HTML,
+        reply_markup=kb.prev_page
     )
