@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, Integer, String
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
@@ -30,13 +30,6 @@ class Item(Base):
     category: Mapped[int] = mapped_column(ForeignKey("categories.id"))
 
 
-class City(Base):
-    __tablename__ = "cities"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(60))
-
-
 class Address(Base):
     __tablename__ = "addresses"
 
@@ -45,6 +38,30 @@ class Address(Base):
     time: Mapped[str] = mapped_column(String(60))
     address: Mapped[str] = mapped_column(String(100))
     city: Mapped[int] = mapped_column(ForeignKey("cities.id"))
+
+
+class City(Base):
+    __tablename__ = "cities"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(60))
+
+
+class Repair_Address(Base):
+    __tablename__ = "repair_addresses"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(25))
+    time: Mapped[str] = mapped_column(String(60))
+    address: Mapped[str] = mapped_column(String(100))
+    city: Mapped[int] = mapped_column(ForeignKey("repair_cities.id"))
+
+
+class Repair_City(Base):
+    __tablename__ = "repair_cities"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(60))
 
 
 async def async_main():

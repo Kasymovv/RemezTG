@@ -3,6 +3,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from database.requests import (
     get_categories,
     get_categories_city,
+    get_categories_repair_city,
     get_category_item,
 )
 
@@ -62,6 +63,20 @@ async def cities():
         keyboard.add(
             InlineKeyboardButton(text=cities.name, callback_data=f"city_{cities.id}")
         )
-    keyboard.add(InlineKeyboardButton(text="Другой", callback_data="to_main"))
+    keyboard.add(InlineKeyboardButton(text="Другой", callback_data="another"))
+    keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
+    return keyboard.adjust(2).as_markup()
+
+
+async def repair_cities():
+    all_cities = await get_categories_repair_city()
+    keyboard = InlineKeyboardBuilder()
+    for cities in all_cities:
+        keyboard.add(
+            InlineKeyboardButton(
+                text=cities.name, callback_data=f"repair_city_{cities.id}"
+            )
+        )
+    keyboard.add(InlineKeyboardButton(text="Другой", callback_data="another_repair"))
     keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
     return keyboard.adjust(2).as_markup()

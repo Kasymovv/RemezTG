@@ -1,4 +1,12 @@
-from database.models import Address, City, async_session, Item, Category
+from database.models import (
+    Address,
+    City,
+    Repair_Address,
+    Repair_City,
+    async_session,
+    Item,
+    Category,
+)
 from sqlalchemy import select
 
 
@@ -22,6 +30,10 @@ async def get_categories_city():
         return await session.scalars(select(City))
 
 
+async def get_categories_repair_city():
+    async with async_session() as session:
+        return await session.scalars(select(Repair_City))
+
 
 async def get_city(city_id):
     async with async_session() as session:
@@ -29,3 +41,9 @@ async def get_city(city_id):
         result = await session.execute(query)
         return result.scalars().all()
 
+
+async def get_repair_city(repair_city_id):
+    async with async_session() as session:
+        query = select(Repair_Address).where(Repair_Address.city == repair_city_id)
+        result = await session.execute(query)
+        return result.scalars().all()
