@@ -29,7 +29,8 @@ async def repair_city(callback: CallbackQuery):
         message += (
             f"<b>{address.name}</b>\n\n"
             f"<b>Адрес:</b> {address.address}\n\n"
-            f"<b>Время работы:</b> {address.time}\n\n\n"
+            f"<b>Время работы:</b> {address.time}\n\n"
+            f"<b>Как пройти:</b> {address.map}\n\n\n"
         )
 
     await callback.answer()

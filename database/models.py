@@ -37,6 +37,7 @@ class Address(Base):
     name: Mapped[str] = mapped_column(String(25))
     time: Mapped[str] = mapped_column(String(60))
     address: Mapped[str] = mapped_column(String(100))
+    map: Mapped[str] = mapped_column(String(100))
     city: Mapped[int] = mapped_column(ForeignKey("cities.id"))
 
 
@@ -54,6 +55,7 @@ class Repair_Address(Base):
     name: Mapped[str] = mapped_column(String(25))
     time: Mapped[str] = mapped_column(String(60))
     address: Mapped[str] = mapped_column(String(100))
+    map: Mapped[str] = mapped_column(String(100))
     city: Mapped[int] = mapped_column(ForeignKey("repair_cities.id"))
 
 

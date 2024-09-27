@@ -25,13 +25,13 @@ async def category(callback: CallbackQuery):
     message = ""
     for address in addresses:
         message += (
-            f"<b>{address.name}</b>\n"
+            f"<b>{address.name}</b>\n\n"
             f"<b>Адрес:</b> {address.address}\n"
             f"<b>Время работы:</b> {address.time}\n"
-            f"<b>Как пройти: </B> {address.map}\n"
+            f"<b>Как пройти: </B> {address.map}\n\n\n"
         )
 
     await callback.answer()
     await callback.message.answer(
-        message, parse_mode=ParseMode.HTML, reply_markup=kb.to_main_page
+        message, parse_mode=ParseMode.HTML, reply_markup=kb.to_main_page, disable_web_page_preview=True
     )
