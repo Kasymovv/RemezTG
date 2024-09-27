@@ -15,7 +15,7 @@ async def addresses(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith("city_"))
 async def category(callback: CallbackQuery):
-    city_id = (callback.data.split("_")[1])
+    city_id = callback.data.split("_")[1]
     addresses = await rq.get_city(city_id)
 
     if not addresses:
@@ -24,13 +24,14 @@ async def category(callback: CallbackQuery):
 
     message = ""
     for address in addresses:
-        message += (f"<b>{address.name}</b>\n"
-                    f"<b>Адрес:</b> {address.address}\n"
-                    f"<b>Время работы:</b> {address.time}\n\n\n")
+        message += (
+            f"<b>{address.name}</b>\n"
+            f"<b>Адрес:</b> {address.address}\n"
+            f"<b>Время работы:</b> {address.time}\n"
+            f"<b>Как пройти: </B> {address.map}\n"
+        )
 
     await callback.answer()
     await callback.message.answer(
-        message,
-        parse_mode=ParseMode.HTML,
-        reply_markup=kb.to_main_page
+        message, parse_mode=ParseMode.HTML, reply_markup=kb.to_main_page
     )
