@@ -16,6 +16,7 @@ menu = InlineKeyboardMarkup(
         [InlineKeyboardButton(text="Ремонт", callback_data="repair")],
         [InlineKeyboardButton(text="О нас", callback_data="about")],
         [InlineKeyboardButton(text="Справка", callback_data="help")],
+        [InlineKeyboardButton(text="Инструкции", callback_data="instructions")],
     ],
     resize_keyboard=True,
     input_field_placeholder="Выберите пункт меню:",

@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, String
+from sqlalchemy import BigInteger, ForeignKey, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
@@ -8,6 +8,12 @@ async_session = async_sessionmaker(engine)
 
 class Base(AsyncAttrs, DeclarativeBase):
     pass
+
+
+class User(Base):
+    __tablename__ = "users"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    tg_id = mapped_column(BigInteger)
 
 
 class Category(Base):
@@ -37,6 +43,7 @@ class Address(Base):
     name: Mapped[str] = mapped_column(String(25))
     time: Mapped[str] = mapped_column(String(60))
     address: Mapped[str] = mapped_column(String(100))
+    phone: Mapped[str] = mapped_column(String(100))
     map: Mapped[str] = mapped_column(String(100))
     city: Mapped[int] = mapped_column(ForeignKey("cities.id"))
 
@@ -55,6 +62,7 @@ class Repair_Address(Base):
     name: Mapped[str] = mapped_column(String(25))
     time: Mapped[str] = mapped_column(String(60))
     address: Mapped[str] = mapped_column(String(100))
+    phone: Mapped[str] = mapped_column(String(100))
     map: Mapped[str] = mapped_column(String(100))
     city: Mapped[int] = mapped_column(ForeignKey("repair_cities.id"))
 

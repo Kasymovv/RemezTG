@@ -17,6 +17,7 @@ from handlers import (
     help,
     about,
     prevpage,
+    instructions,
 )
 from database.models import async_main
 
@@ -37,8 +38,10 @@ async def main():
     dp.include_router(repair.router)
     dp.include_router(mainpage.router)
     dp.include_router(anotherrepair.router)
+    dp.include_router(instructions.router)
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
     asyncio.run(main())

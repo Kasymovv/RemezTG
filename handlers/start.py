@@ -1,4 +1,5 @@
 import keyboard
+import database.requests as rq
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import CommandStart
@@ -8,6 +9,7 @@ router = Router()
 
 @router.message(CommandStart())
 async def start(message: Message):
+    await rq.set_user(message.from_user.id)
     await message.answer(
         """Привет! 
 

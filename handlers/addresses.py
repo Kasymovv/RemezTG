@@ -28,10 +28,14 @@ async def category(callback: CallbackQuery):
             f"<b>{address.name}</b>\n\n"
             f"<b>Адрес:</b> {address.address}\n"
             f"<b>Время работы:</b> {address.time}\n"
-            f"<b>Как пройти: </B> {address.map}\n\n\n"
+            f"<b>Как пройти: </b> {address.map}\n\n"
+            f"<b>Телефон: </b> {address.phone}\n\n\n"
         )
 
     await callback.answer()
     await callback.message.answer(
-        message, parse_mode=ParseMode.HTML, reply_markup=kb.to_main_page, disable_web_page_preview=True
+        message,
+        parse_mode=ParseMode.HTML,
+        reply_markup=kb.to_main_page,
+        disable_web_page_preview=True,
     )
