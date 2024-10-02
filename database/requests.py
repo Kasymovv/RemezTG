@@ -25,7 +25,7 @@ async def get_categories():
         return await session.scalars(select(Category))
 
 
-async def get_category_item(category_id):
+async def get_category_item(category_id: int):
     async with async_session() as session:
         return await session.scalars(select(Item).where(Item.category == category_id))
 

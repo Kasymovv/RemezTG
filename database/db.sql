@@ -1,81 +1,81 @@
 create table categories (
-  id integer primary key,
-  name varchar(20) not null unique
+  id serial primary key,
+  name varchar(500) not null unique
 );
 
 create table users (
-  id integer primary key,
+  id serial primary key,
   tg_id bigint not null,
   created_at timestamp default current_timestamp not null
 );
 
 create table items (
-  id integer primary key,
-  name varchar(60),
+  id serial primary key,
+  name varchar(500),
   price integer,
-  description varchar(500),
-  availability varchar(20),
-  equipment varchar(20),
-  buy varchar(60),
+  description varchar(2000),
+  availability varchar(500),
+  equipment varchar(5000),
+  buy varchar(500),
   category integer,
   foreign key (category) references categories (id)
 );
 
 create table cities (
-  id integer primary key,
-  name varchar(60) not null unique
+  id serial primary key,
+  name varchar(500) not null unique
 );
 
 create table addresses (
-  id integer primary key,
-  name varchar(25),
-  time varchar(60),
-  address varchar(100),
+  id serial primary key,
+  name varchar(500),
+  time varchar(500),
+  address varchar(500),
   city integer,
   category integer,
-  map varchar(60),
-  phone varchar(60),
+  map varchar(500),
+  phone varchar(500),
   foreign key (city) references cities (id)
 );
 
 create table repair_cities (
-  id integer primary key,
-  name varchar(60) not null unique
+  id serial primary key,
+  name varchar(500) not null unique
 );
 
 create table repair_addresses (
-  id integer primary key,
-  name varchar(25),
-  time varchar(60),
-  address varchar(100),
+  id serial primary key,
+  name varchar(500),
+  time varchar(500),
+  address varchar(500),
   city integer,
   category integer,
-  map varchar(60),
-  phone varchar(60),
+  map varchar(500),
+  phone varchar(500),
   foreign key (city) references repair_cities (id)
 );
 
 insert into
-  repair_cities (id, name)
+  repair_cities (name)
 values
-  (1, 'Москва'),
-  (2, 'Санкт-Петербург'),
-  (3, 'Белгород'),
-  (4, 'Волгоград'),
-  (5, 'Екатеринбург'),
-  (6, 'Краснодар'),
-  (7, 'Красноярск'),
-  (8, 'Нижний Новгород'),
-  (9, 'Новосибирск'),
-  (10, 'Махачкала'),
-  (11, 'Пермь'),
-  (12, 'Ростов-на-Дону'),
-  (13, 'Рязань'),
-  (14, 'Самара'),
-  (15, 'Тула'),
-  (16, 'Уфа'),
-  (17, 'Чебоксары'),
-  (18, 'Челябинск');
+  ('Москва'),
+  ('Санкт-Петербург'),
+  ('Белгород'),
+  ('Волгоград'),
+  ('Екатеринбург'),
+  ('Краснодар'),
+  ('Красноярск'),
+  ('Нижний Новгород'),
+  ('Новосибирск'),
+  ('Махачкала'),
+  ('Пермь'),
+  ('Ростов-на-Дону'),
+  ('Рязань'),
+  ('Самара'),
+  ('Тула'),
+  ('Уфа'),
+  ('Чебоксары'),
+  ('Челябинск');
 
 insert into
   repair_addresses (city, name, address, time, map, phone)
@@ -226,15 +226,15 @@ values
   );
 
 insert into
-  cities (id, name)
+  cities (name)
 values
-  (1, 'Москва'),
-  (2, 'Санкт-Петербург'),
-  (3, 'Казань'),
-  (4, 'Калининград'),
-  (5, 'Нальчик'),
-  (6, 'Грозный'),
-  (7, 'Тюмень');
+  ('Москва'),
+  ('Санкт-Петербург'),
+  ('Казань'),
+  ('Калининград'),
+  ('Нальчик'),
+  ('Грозный'),
+  ('Тюмень');
 
 insert into
   addresses (city, name, address, time, map, phone)
@@ -361,13 +361,13 @@ values
   );
 
 insert into
-  categories (name, id)
+  categories (name)
 values
-  ('Пылесосы Multiclick', 1),
-  ('Пылесосы IQself', 2),
-  ('Красота', 3),
-  ('Увлажнители', 4),
-  ('Осушители', 5);
+  ('Пылесосы Multiclick'),
+  ('Пылесосы IQself'),
+  ('Красота'),
+  ('Увлажнители'),
+  ('Осушители');
 
 insert into
   items (

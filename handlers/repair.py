@@ -17,7 +17,7 @@ async def repair(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith("repair_city_"))
 async def repair_city(callback: CallbackQuery):
-    city_id = callback.data.split("_")[2]
+    city_id = int(callback.data.split("_")[2])
     addresses = await rq.get_repair_city(city_id)
 
     if not addresses:

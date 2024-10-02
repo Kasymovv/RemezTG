@@ -15,7 +15,7 @@ async def addresses(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith("city_"))
 async def category(callback: CallbackQuery):
-    city_id = callback.data.split("_")[1]
+    city_id = int(callback.data.split("_")[1])
     addresses = await rq.get_city(city_id)
 
     if not addresses:
