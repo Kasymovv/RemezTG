@@ -6,6 +6,10 @@ create table categories (
 create table users (
   id serial primary key,
   tg_id bigint not null,
+  name varchar(50),
+  contact varchar(50),
+  device_serial varchar(50),
+  email varchar(50),
   created_at timestamp default current_timestamp not null
 );
 

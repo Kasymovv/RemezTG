@@ -1,4 +1,9 @@
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    ReplyKeyboardMarkup,
+    KeyboardButton,
+)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from database.requests import (
     get_categories,
@@ -7,8 +12,19 @@ from database.requests import (
     get_category_item,
 )
 
+contact = ReplyKeyboardMarkup(
+    keyboard=[[KeyboardButton(text="Отправить контакт", request_contact=True)]],
+    resize_keyboard=True,
+    input_field_placeholder="Нажмите кнопку ниже.",
+)
+
 menu = InlineKeyboardMarkup(
     inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="Регистрация фена-стайлера", callback_data="registration"
+            )
+        ],
         [InlineKeyboardButton(text="Адреса магазинов", callback_data="addresses")],
         [InlineKeyboardButton(text="Записаться на укладку", callback_data="beauty")],
         [InlineKeyboardButton(text="Каталог товаров", callback_data="shop")],

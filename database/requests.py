@@ -1,3 +1,4 @@
+from os import device_encoding
 from database.models import (
     Address,
     City,
@@ -8,7 +9,15 @@ from database.models import (
     Category,
     User,
 )
-from sqlalchemy import select
+from sqlalchemy import select, update
+
+
+def connection(func):
+    async def wrapper(*args, **kwargs):
+        async with async_session() as session:
+            return await func(session, *args, **kwargs)
+
+    return wrapper
 
 
 async def set_user(tg_id):
@@ -18,6 +27,16 @@ async def set_user(tg_id):
         if not user:
             session.add(User(tg_id=tg_id))
             await session.commit()
+
+
+@connection
+async def update_user(session, tg_id, name, contact, email, device_serial):
+    await session.execute(
+        update(User)
+        .where(User.tg_id == tg_id)
+        .values(name=name, contact=contact, email=email, device_serial=device_serial)
+    )
+    await session.commit()
 
 
 async def get_categories():

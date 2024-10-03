@@ -1,6 +1,4 @@
 import asyncio
-import sys
-import logging
 
 from aiogram import Bot, Dispatcher
 from config import TELEGRAM_TOKEN
@@ -18,6 +16,7 @@ from handlers import (
     about,
     prevpage,
     instructions,
+    registration,
 )
 from database.models import async_main
 
@@ -39,6 +38,7 @@ async def main():
     dp.include_router(mainpage.router)
     dp.include_router(anotherrepair.router)
     dp.include_router(instructions.router)
+    dp.include_router(registration.router)
     await dp.start_polling(bot)
 
 
