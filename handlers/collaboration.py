@@ -10,7 +10,7 @@ async def collaboration(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer(
         """
-Если Вы инфлюенсер, стилист, блогер: @irina_irita - instagram
+Если Вы инфлюенсер, стилист, блогер: @irina_irita
 
 Оптовые продажи: i.fomina@romatigroup.com
 

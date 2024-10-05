@@ -21,6 +21,6 @@ REMEZ – российский инженерный проект.
 
     """,
         disable_web_page_preview=True,
-        reply_markup=kb.to_main_page,
+        reply_markup=kb.collab_and_help,
         parse_mode=ParseMode.HTML,
     )

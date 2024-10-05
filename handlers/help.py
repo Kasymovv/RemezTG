@@ -1,6 +1,7 @@
 from aiogram import Router, F
 from aiogram.enums import ParseMode
 from aiogram.types import CallbackQuery
+from aiogram.utils.markdown import hlink
 import keyboard as kb
 
 router = Router()
@@ -10,48 +11,24 @@ router = Router()
 async def help(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer(
-        """
-<b>Карточка огранизации</b>
-
-ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РОМАТИ"
-
-ИНН 7730213981
-ОГРН 1167746874855
-КПП 773101001
-
-143421, Красногорск городской округ, МО, Новорижское шоссе д. 5, стр. 3, ООО «РОМАТИ»
-
-REMEZ. Эстетика инженерии. Технологичные устройства для жизни.
-
-<b>Сайт: </b>
-
-remez.com.ru - официальный сайт
-
-<b>Социальные сети: </b>
-
-@remez_ru - Instagram
-@Romati_Service_bot - Telegram
-vk.com/remezair - VK
-+7-926-160-91-75 - Whatsapp
-
-<b>Почта:</b>
-
-info@remez.com.ru - Общее
-service@romatigroup.com - Ремонт и сервисные вопросы
-i.fomina@romatigroup.com - Оптовые продажи
-a.zharikova@romatigroup.com - PR и маркетинг
-info@remezair.com - Логистика
-
-<b>Телефон:</b>
-
-8-800-333-05-69 - Ежедневно 09.00 - 21.00 (по московскому времени)
-
-<b>Юридический адрес:</b>
-
-121615, г. Москва, муниципальный округ Кунцево вн.тер.г., Рублёвское ш, д. 22, к. 1, помещ. 364
-
-ООО «РОМАТИ»
-    """,
+        text=hlink("Официальный сайт\n\n", "remez.com.ru")
+        + "<b>Социальные сети:</b>\n\n"
+        + hlink("Telegram\n", "https://telegram.me/Romati_Service_bot")
+        + hlink("VK\n", "vk.com/remezair")
+        + hlink(
+            "Whatsapp\n\n",
+            "https://api.whatsapp.com/send/?phone=79652546814&text&type=phone_number&app_absent=0",
+        )
+        + "<b>Почта:\n</b>"
+        + """
+Общее: info@remez.com.ru
+Сервис и гарантия: service@romatigroup.com
+Оптовые продажи: i.fomina@romatigroup.com
+PR и маркетинг: a.zharikova@romatigroup.com
+Логистики: info@remezair.com\n
+"""
+        + "<b>Телефон:</b>\n\n"
+        + """8-800-333-05-69 - Ежедневно 09.00 - 21.00 (по московскому времени)""",
         disable_web_page_preview=True,
         reply_markup=kb.to_main_page,
         parse_mode=ParseMode.HTML,

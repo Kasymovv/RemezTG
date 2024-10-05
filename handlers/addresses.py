@@ -2,6 +2,8 @@ from aiogram import F, Router
 from aiogram.enums import ParseMode
 from aiogram.types import CallbackQuery
 from database import requests as rq
+from aiogram.utils.markdown import hlink
+
 import keyboard as kb
 
 router = Router()
@@ -25,17 +27,18 @@ async def category(callback: CallbackQuery):
     message = ""
     for address in addresses:
         message += (
-            f"<b>{address.name}</b>\n\n"
-            f"<b>Адрес:</b> {address.address}\n"
-            f"<b>Время работы:</b> {address.time}\n"
-            f"<b>Как пройти: </b> {address.map}\n\n"
-            f"<b>Телефон: </b> {address.phone}\n\n\n"
+            f"*{address.name}*\n\n"
+            f"**Адрес** {address.address}\n"
+            f"**Время работы:** {address.time}\n"
+            f"[Как пройти]({address.map})\n\n"
+            f"**Телефон:** {address.phone}\n\n"
+            f"*Ассортимент:* _{address.stock}_\n\n"
         )
 
     await callback.answer()
     await callback.message.answer(
         message,
-        parse_mode=ParseMode.HTML,
+        parse_mode=ParseMode.MARKDOWN,
         reply_markup=kb.to_main_page,
         disable_web_page_preview=True,
     )

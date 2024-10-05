@@ -1,8 +1,6 @@
 from aiogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    ReplyKeyboardMarkup,
-    KeyboardButton,
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from database.requests import (
@@ -12,31 +10,48 @@ from database.requests import (
     get_category_item,
 )
 
-contact = ReplyKeyboardMarkup(
-    keyboard=[[KeyboardButton(text="Отправить контакт", request_contact=True)]],
-    resize_keyboard=True,
-    input_field_placeholder="Нажмите кнопку ниже.",
-)
-
 menu = InlineKeyboardMarkup(
     inline_keyboard=[
+        [InlineKeyboardButton(text="Устройства", callback_data="shop")],
+        [InlineKeyboardButton(text="Адреса магазинов", callback_data="addresses")],
+        [InlineKeyboardButton(text="Записаться на укладку", callback_data="beauty")],
         [
             InlineKeyboardButton(
                 text="Регистрация фена-стайлера", callback_data="registration"
             )
         ],
-        [InlineKeyboardButton(text="Адреса магазинов", callback_data="addresses")],
-        [InlineKeyboardButton(text="Записаться на укладку", callback_data="beauty")],
-        [InlineKeyboardButton(text="Каталог товаров", callback_data="shop")],
-        [InlineKeyboardButton(text="Сотрудничество", callback_data="collaboration")],
-        [InlineKeyboardButton(text="Ремонт", callback_data="repair")],
         [InlineKeyboardButton(text="О нас", callback_data="about")],
-        [InlineKeyboardButton(text="Справка", callback_data="help")],
         [InlineKeyboardButton(text="Инструкции", callback_data="instructions")],
+        [InlineKeyboardButton(text="Сервис и гарантия", callback_data="repair")],
     ],
     resize_keyboard=True,
     input_field_placeholder="Выберите пункт меню:",
 )
+
+collab_and_help = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="Карта организации", callback_data="card")],
+        [InlineKeyboardButton(text="Сотрудничество", callback_data="collaboration")],
+        [InlineKeyboardButton(text="Справка", callback_data="help")],
+        [InlineKeyboardButton(text="На главную", callback_data="to_main")],
+    ]
+)
+
+beauty_online_offline = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="Бесплатная укладка в Москве", callback_data="beautyoffline"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="Бесплатная укладка онлайн", callback_data="beautyonline"
+            )
+        ],
+    ]
+)
+
 
 to_main_page = InlineKeyboardMarkup(
     inline_keyboard=[[InlineKeyboardButton(text="На главную", callback_data="to_main")]]

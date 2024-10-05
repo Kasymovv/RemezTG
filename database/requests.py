@@ -4,10 +4,11 @@ from database.models import (
     City,
     Repair_Address,
     Repair_City,
+    Styling,
+    User,
     async_session,
     Item,
     Category,
-    User,
 )
 from sqlalchemy import select, update
 
@@ -35,6 +36,32 @@ async def update_user(session, tg_id, name, contact, email, device_serial):
         update(User)
         .where(User.tg_id == tg_id)
         .values(name=name, contact=contact, email=email, device_serial=device_serial)
+    )
+    await session.commit()
+
+
+async def set_beauty(tg_id):
+    async with async_session() as session:
+        user = await session.scalar(select(User).where(User.tg_id == tg_id))
+
+        if not user:
+            session.add(User(tg_id=tg_id))
+            await session.commit()
+
+
+@connection
+async def update_beauty(session, tg_id, name, contact, email, device, use_or_not, time):
+    await session.execute(
+        update(Styling)
+        .where(Styling.tg_id == tg_id)
+        .values(
+            name=name,
+            contact=contact,
+            email=email,
+            device=device,
+            use_or_not=use_or_not,
+            time=time,
+        )
     )
     await session.commit()
 

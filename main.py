@@ -17,6 +17,9 @@ from handlers import (
     prevpage,
     instructions,
     registration,
+    card,
+    beautyonline,
+    beautyoffline,
 )
 from database.models import async_main
 
@@ -26,10 +29,11 @@ async def main():
     bot = Bot(token=TELEGRAM_TOKEN)
     dp = Dispatcher()
     dp.include_router(start.router)
+    dp.include_router(shop.router)
     dp.include_router(another.router)
+    dp.include_router(card.router)
     dp.include_router(prevpage.router)
     dp.include_router(addresses.router)
-    dp.include_router(shop.router)
     dp.include_router(collaboration.router)
     dp.include_router(help.router)
     dp.include_router(about.router)
@@ -39,6 +43,8 @@ async def main():
     dp.include_router(anotherrepair.router)
     dp.include_router(instructions.router)
     dp.include_router(registration.router)
+    dp.include_router(beautyonline.router)
+    dp.include_router(beautyoffline.router)
     await dp.start_polling(bot)
 
 

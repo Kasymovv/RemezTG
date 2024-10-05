@@ -1,5 +1,5 @@
 from sqlalchemy import BigInteger, ForeignKey, String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
 engine = create_async_engine(url="postgresql+asyncpg://remez:123qwe@localhost/remezdb")
@@ -18,6 +18,18 @@ class User(Base):
     email: Mapped[str] = mapped_column(String(50), nullable=True)
     contact: Mapped[str] = mapped_column(String(50), nullable=True)
     device_serial: Mapped[str] = mapped_column(String(50), nullable=True)
+
+
+class Styling(Base):
+    __tablename__ = "styling"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    tg_id = mapped_column(BigInteger)
+    name: Mapped[str] = mapped_column(String(50), nullable=True)
+    email: Mapped[str] = mapped_column(String(50), nullable=True)
+    contact: Mapped[str] = mapped_column(String(50), nullable=True)
+    device: Mapped[str] = mapped_column(String(50), nullable=True)
+    use_or_not: Mapped[str] = mapped_column(String(50), nullable=True)
+    time: Mapped[str] = mapped_column(String(50), nullable=True)
 
 
 class Category(Base):
@@ -49,6 +61,7 @@ class Address(Base):
     address: Mapped[str] = mapped_column(String(500))
     phone: Mapped[str] = mapped_column(String(500))
     map: Mapped[str] = mapped_column(String(500))
+    stock: Mapped[str] = mapped_column(String(500))
     city: Mapped[int] = mapped_column(ForeignKey("cities.id"))
 
 
