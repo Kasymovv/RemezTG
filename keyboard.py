@@ -95,7 +95,7 @@ async def cities():
         keyboard.add(
             InlineKeyboardButton(text=cities.name, callback_data=f"city_{cities.id}")
         )
-    keyboard.add(InlineKeyboardButton(text="Другой", callback_data="another"))
+    keyboard.add(InlineKeyboardButton(text="Онлайн", callback_data="another"))
     keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
     return keyboard.adjust(2).as_markup()
 
@@ -109,6 +109,8 @@ async def repair_cities():
                 text=cities.name, callback_data=f"repair_city_{cities.id}"
             )
         )
-    keyboard.add(InlineKeyboardButton(text="Другой", callback_data="another_repair"))
+    keyboard.add(
+        InlineKeyboardButton(text="Оставить заявку", callback_data="another_repair")
+    )
     keyboard.add(InlineKeyboardButton(text="На главную", callback_data="to_main"))
     return keyboard.adjust(2).as_markup()

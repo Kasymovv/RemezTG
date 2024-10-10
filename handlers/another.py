@@ -11,7 +11,7 @@ router = Router()
 async def help(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer(
-        text="К сожалению в Вашем городе мы не открыли точки продаж, но Вы всегда можете приобрести наши устройства онлайн:\n\n"
+        text="Вы всегда можете приобрести Ваши любимые устройства онлайн:\n\n"
         + hlink("Официальный сайт\n\n", "remez.com.ru")
         + "<b>Онлайн-магазины</b>\n\n"
         + hlink(
@@ -31,7 +31,12 @@ async def help(callback: CallbackQuery):
             "Бессовестно Таланливый\n",
             "https://ibt.ru/?srsltid=AfmBOoq-gh-5FPQnyifiO7rOwXxVoKALDiLvaChbcwTY6WBs3D9SXnyN&digiSearch=true&term=Remez&params=%7Csort%3DDEFAULT",
         )
-        + hlink("РИВ ГОШ\n", "https://rivegauche.ru/search?text=remez"),
+        + hlink("РИВ ГОШ\n", "https://rivegauche.ru/search?text=remez")
+        + hlink("Золотое Яблоко\n", "https://goldapple.ru/catalogsearch/result?q=remez")
+        + hlink(
+            "ЛЭТУАЛЬ\n",
+            "https://www.letu.ru/search/filters/brand-name=remez?Dy=1&Ntt=remez",
+        ),
         disable_web_page_preview=True,
         reply_markup=kb.to_main_page,
         parse_mode=ParseMode.HTML,

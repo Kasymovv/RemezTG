@@ -28,7 +28,7 @@ async def category(callback: CallbackQuery):
     for address in addresses:
         message += (
             f"*{address.name}*\n\n"
-            f"**Адрес** {address.address}\n"
+            f"**Адрес**: {address.address}\n"
             f"**Время работы:** {address.time}\n"
             f"[Как пройти]({address.map})\n\n"
             f"**Телефон:** {address.phone}\n\n"

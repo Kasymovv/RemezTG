@@ -1,5 +1,5 @@
 from sqlalchemy import BigInteger, ForeignKey, String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
 engine = create_async_engine(url="postgresql+asyncpg://remez:123qwe@localhost/remezdb")
@@ -32,6 +32,17 @@ class Styling(Base):
     time: Mapped[str] = mapped_column(String(50), nullable=True)
 
 
+class RepairDevice(Base):
+    __tablename__ = "repair_device"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    tg_id = mapped_column(BigInteger)
+    name: Mapped[str] = mapped_column(String(50), nullable=True)
+    email: Mapped[str] = mapped_column(String(50), nullable=True)
+    contact: Mapped[str] = mapped_column(String(50), nullable=True)
+    device: Mapped[str] = mapped_column(String(50), nullable=True)
+    problem: Mapped[str] = mapped_column(String(500), nullable=True)
+
+
 class Category(Base):
     __tablename__ = "categories"
 
@@ -46,6 +57,7 @@ class Item(Base):
     name: Mapped[str] = mapped_column(String(500))
     price: Mapped[int] = mapped_column()
     description: Mapped[str] = mapped_column(String(500))
+    more_desc: Mapped[str] = mapped_column(String(500))
     equipment: Mapped[str] = mapped_column(String(5000))
     availability: Mapped[str] = mapped_column(String(500))
     buy: Mapped[str] = mapped_column(String(500))

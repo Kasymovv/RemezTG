@@ -29,7 +29,7 @@ async def category(callback: CallbackQuery):
     item_data = await rq.get_item(int(callback.data.split("_")[1]))
     await callback.answer()
     await callback.message.answer(
-        f"*{item_data.name}*\n\n{item_data.description}\n\n*Цена:* {item_data.price}Р\n\n*Комплект:*\n\n{item_data.equipment}\n\n[Проверить наличие]({item_data.buy})",
+        f"*{item_data.name}*\n\n{item_data.description}\n\n[Ознакомиться подробнее]({item_data.more_desc})\n\n*Цена:* {item_data.price}Р\n\n*Комплект:*\n\n{item_data.equipment}\n\n[Проверить наличие]({item_data.buy})",
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=kb.prev_page,
     )

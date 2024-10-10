@@ -4,6 +4,7 @@ from database.models import (
     City,
     Repair_Address,
     Repair_City,
+    RepairDevice,
     Styling,
     User,
     async_session,
@@ -61,6 +62,31 @@ async def update_beauty(session, tg_id, name, contact, email, device, use_or_not
             device=device,
             use_or_not=use_or_not,
             time=time,
+        )
+    )
+    await session.commit()
+
+
+async def reg_repair(tg_id):
+    async with async_session() as session:
+        user = await session.scalar(select(User).where(User.tg_id == tg_id))
+
+        if not user:
+            session.add(User(tg_id=tg_id))
+            await session.commit()
+
+
+@connection
+async def update_repair(session, tg_id, name, contact, email, device, problem):
+    await session.execute(
+        update(RepairDevice)
+        .where(RepairDevice.tg_id == tg_id)
+        .values(
+            name=name,
+            contact=contact,
+            email=email,
+            device=device,
+            problem=problem,
         )
     )
     await session.commit()
